@@ -13,12 +13,14 @@ class Snake():
 
         self.window = window
         self.board = board
+        self.x_coord = 10
+        self.y_coord = 11
 
         self.body = (
-            self.board.getPosition(10,10),
-            self.board.getPosition(10,11),
-            self.board.getPosition(10,12),
-            self.board.getPosition(10,13)
+            self.board.getPosition(x_coord, y_coord),
+            self.board.getPosition(x_coord, y_coord + 1),
+            self.board.getPosition(x_coord, y_coord + 2),
+            self.board.getPosition(x_coord, y_coord + 3)
         )
 
     def move(self):
