@@ -1,5 +1,6 @@
 from pygame import draw
 import threading
+import time
 from Colours import *
 
 class Board():
@@ -16,12 +17,6 @@ class Board():
 
 
     def getPosition(self, x, y):
-
-        if x == 0:
-            x_coord = 0
-
-        if y == 0:
-            y_coord = 1
 
         x_coord = x * self.grid_size
         y_coord = y * self.grid_size
@@ -69,7 +64,7 @@ class Board():
             temp = temp + self.grid_size
 
 
-    def makeGrid(self):
+    def drawGrid(self):
 
         column_thread = threading.Thread(target=self.makeColumns)
         row_thread = threading.Thread(target=self.makeRows)
