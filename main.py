@@ -1,27 +1,8 @@
 from Window import *
 from Snake import *
 from Board import *
+from Food import *
 import pygame
-
-displayFood()
-
-def createFood(x, y):
-
-    x_coord, y_coord = board.getPosition(x, y)
-
-    food = pygame.draw.rect(
-        window.gameDisplay,
-        colours['black'],
-        (x_coord, y_coord, board.grid_size, board.grid_size)
-    )
-
-    return food
-
-def ateFood(snake, food):
-
-    if snake.head_pos == [food[0], food[1]]:
-        food = createFood(1, 1)
-
 
 def play():
 
@@ -36,13 +17,13 @@ def play():
         board.drawGrid()
         # board.displayScore(snake)
 
-        food.drawFood()
+        food.drawFood(window)
 
         snake.drawSnake()
         snake.changeDirection(events)
 
-        if snake.ateFood(food):
-            food.randomFood(snake)
+        # if snake.ateFood(food):
+        #     food.randomFood(snake)
 
         window.run(5)
 

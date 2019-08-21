@@ -1,6 +1,5 @@
 from pygame import draw
 from random import randint
-from Window import *
 from Colours import *
 
 class Food():
@@ -15,12 +14,12 @@ class Food():
 
     def __init__(self, board):
 
-        seld.board = board
+        self.board = board
 
         self.x = randint(0, self.board.grid_size + 1)
         self.y = randint(0, self.board.grid_size + 1)
 
-    def drawFood(self):
+    def drawFood(self, window):
 
         self.x_coord, self.y_coord = self.board.getPosition(self.x, self.y)
 
