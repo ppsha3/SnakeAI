@@ -7,6 +7,8 @@ class Board():
 
     def  displayScore(self, snake):
         pass
+        # snake.body =
+
 
     def __init__(self, window, grid_size):
 
@@ -19,15 +21,7 @@ class Board():
         x_coord = x * self.grid_size
         y_coord = y * self.grid_size
 
-        return [x_coord, y_coord]
-
-
-    def getGridPoint(self, x, y):
-
-        x_point = int(x/self.grid_size)
-        y_point = int(y/self.grid_size)
-
-        return [x_point, y_point]
+        return x_coord, y_coord
 
 
     def makeColumns(self):

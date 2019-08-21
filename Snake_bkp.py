@@ -8,12 +8,15 @@ class Snake():
         self.window = window
         self.board = board
 
-        self.head_pos = [2,2]
+        self.head_pos = [5, 5]
         self.x_change = 0
         self.y_change = 1
+        # self.turns = []
 
         self.body = [
+
             self.head_pos
+
         ]
 
 
@@ -34,22 +37,23 @@ class Snake():
                     self.x_change = 0
                     self.y_change = 1
 
-
-    def ateFood(self, food):
-
-        if [food.x, food.y] == self.head_pos:
-            self.growBody()
-            return True
-
-        return False
-
-
     def growBody(self):
 
         tailPos = self.body[-1]
-        print('Tail', tailPos)
-        self.body.append(tailPos)
-        print('Body', self.body)
+        self.body.append[[tailPos[0], tailPos[1]]]
+
+    # def drawHead(self):
+    #
+    #     nextCubePos = self.board.getPosition(self.x_coord, self. y_coord)
+    #
+    #     draw.rect(
+    #         self.window.gameDisplay,
+    #         colours['grey'],
+    #         (self.board.getPosition(self.head_pos),
+    #           self.board.grid_size, self.board.grid_size))
+    #     )
+    #
+    #    return nextCubePos
 
 
     def drawSnake(self):
@@ -57,17 +61,12 @@ class Snake():
         for i in range(0, len(self.body)):
 
             if i == 0:
-                nextCubePos = self.body[i][:]
-                # print('Next: ', nextCubePos)
                 self.head_pos[0] = self.head_pos[0] + self.x_change
                 self.head_pos[1] = self.head_pos[1] + self.y_change
-                self.body[i] = self.head_pos
-                # print('Head:', self.body[i], self.x_change, self.y_change)
-                thisCubePos = self.body[i][:]
-                # print('This:', thisCubePos)
+
+                thisCubePos = [self.head_pos[0], self.head_pos[1]]
             else:
-                thisCubePos = nextCubePos
-                nextCubePos = self.body[i]
+                thisCubePos = self.body[i-1]
 
             draw.rect(
                 self.window.gameDisplay,
