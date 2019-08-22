@@ -22,10 +22,10 @@ def play():
         snake.drawSnake()
         snake.changeDirection(events)
 
-        # if snake.ateFood(food):
-        #     food.randomFood(snake)
+        if snake.ateFood(food):
+            food.randomFood(snake)
 
-        window.run(5)
+        window.run(7)
 
 
 window = Window(800, 600, 'Snake')

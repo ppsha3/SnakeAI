@@ -8,12 +8,15 @@ class Snake():
         self.window = window
         self.board = board
 
-        self.head_pos = [2,2]
+        self.head_pos = [2,5]
         self.x_change = 0
         self.y_change = 1
 
         self.body = [
-            self.head_pos
+            self.head_pos,
+            [2,4],
+            [2,3],
+            [2,2]
         ]
 
 
@@ -38,36 +41,34 @@ class Snake():
     def ateFood(self, food):
 
         if [food.x, food.y] == self.head_pos:
-            self.growBody()
+            self.growBody([food.x, food.y])
             return True
 
         return False
 
 
-    def growBody(self):
+    def growBody(self, tailPos):
 
-        tailPos = self.body[-1]
-        print('Tail', tailPos)
         self.body.append(tailPos)
-        print('Body', self.body)
 
 
     def drawSnake(self):
+
+        print('Len:', self.body)
 
         for i in range(0, len(self.body)):
 
             if i == 0:
                 nextCubePos = self.body[i][:]
-                # print('Next: ', nextCubePos)
-                self.head_pos[0] = self.head_pos[0] + self.x_change
-                self.head_pos[1] = self.head_pos[1] + self.y_change
-                self.body[i] = self.head_pos
-                # print('Head:', self.body[i], self.x_change, self.y_change)
+                self.head_pos = [self.head_pos[0] + self.x_change,
+                                    self.head_pos[1] + self.y_change]
+                self.body[i] = self.head_pos[:]
                 thisCubePos = self.body[i][:]
-                # print('This:', thisCubePos)
             else:
                 thisCubePos = nextCubePos
-                nextCubePos = self.body[i]
+                nextCubePos = self.body[i][:]
+                self.body[i] = thisCubePos[:]
+
 
             draw.rect(
                 self.window.gameDisplay,
@@ -75,3 +76,5 @@ class Snake():
                 (self.board.getPosition(*thisCubePos),
                 (self.board.grid_size, self.board.grid_size))
             )
+
+        print('Len:', self.body)
